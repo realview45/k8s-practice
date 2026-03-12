@@ -45,7 +45,7 @@ jobs:
 
       - name: eks kubectl apply
         run: |
-          kubectl rollout restart deployment ordersystem-deployment -n bradkim
+          kubectl rollout restart deployment ordersystem-deployment -n jk-ns
         # replicaset revision이 만들어진다? 스크립트로 공부하기
         # kubectl apply -f ./2.ordersystem/k8s/depl_svc.yml
         # 한번도 적용안한상태에서 필요
