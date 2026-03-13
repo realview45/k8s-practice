@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 //name부분은 eureka에 등록될 application name을 의미
 //url부분은 k8s의 서비스명        local                           prod
-@Profile("local")
 @FeignClient(name = "product-service", url="${http://product-service.url:}")
 public interface ProductFeignClient {
     @GetMapping("/product/detail/{id}")
