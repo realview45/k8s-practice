@@ -32,11 +32,6 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: apigateway build and push
-        env:
-          REGISTRY: 346903264902.dkr.ecr.ap-northeast-2.amazonaws.com
-          REPOSITORY: jk-ns/apigateway
-          IMAGE_TAG: latest
 # build
       - name: apigateway build and push
         env:
