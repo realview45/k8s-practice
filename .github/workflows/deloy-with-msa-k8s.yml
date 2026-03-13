@@ -38,26 +38,48 @@ jobs:
           REPOSITORY: jk-ns/apigateway
           IMAGE_TAG: latest
 # build
+      - name: apigateway build and push
+        env:
+          REGISTRY: 346903264902.dkr.ecr.ap-northeast-2.amazonaws.com
+          REPOSITORY: jk-ns/apigateway
+          IMAGE_TAG: latest
+        run: |
+          docker build \
+          -t $REGISTRY/$REPOSITORY:$IMAGE_TAG \
+          -f ./3.msa/apigateway/Dockerfile ./3.msa/apigateway
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+
       - name: member build and push
         env:
           REGISTRY: 346903264902.dkr.ecr.ap-northeast-2.amazonaws.com
           REPOSITORY: jk-ns/member
           IMAGE_TAG: latest
+        run: |
+          docker build \
+          -t $REGISTRY/$REPOSITORY:$IMAGE_TAG \
+          -f ./3.msa/member/Dockerfile ./3.msa/member
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+
       - name: ordering build and push
         env:
           REGISTRY: 346903264902.dkr.ecr.ap-northeast-2.amazonaws.com
           REPOSITORY: jk-ns/ordering
           IMAGE_TAG: latest
+        run: |
+          docker build \
+          -t $REGISTRY/$REPOSITORY:$IMAGE_TAG \
+          -f ./3.msa/ordering/Dockerfile ./3.msa/ordering
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+
       - name: product build and push
         env:
           REGISTRY: 346903264902.dkr.ecr.ap-northeast-2.amazonaws.com
           REPOSITORY: jk-ns/product
           IMAGE_TAG: latest
-
         run: |
           docker build \
           -t $REGISTRY/$REPOSITORY:$IMAGE_TAG \
-          -f ./3.msa/apigateway/Dockerfile ./3.msa/apigateway
+          -f ./3.msa/product/Dockerfile ./3.msa/product
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 # apply
       - name: apigateway kubectl apply
